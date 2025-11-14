@@ -13,7 +13,7 @@ const team = [
   { name: "Ajith Dinakar", role: "Director" },
   { name: "Devaraj V", role: "Director" },
   { name: "Subrata Nag", role: "General Manager Sales" },
-  { name: "Mahesh Rao", role: "Service Delivery Manager" },
+  { name: "Mahesh Rao", role: "Senior Manager - Service Delivery " },
   { name: "Arul Kumar T", role: "Senior Manager - Sales" }
 ];
 

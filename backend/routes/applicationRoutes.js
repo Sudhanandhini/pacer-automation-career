@@ -3,9 +3,10 @@ const router = express.Router();
 const db = require('../config/db');
 const authMiddleware = require('../middleware/authMiddleware');
 const upload = require('../middleware/uploadMiddleware');
+const { sendApplicationEmail } = require('../services/emailService');
 
 // @route   POST /api/applications
-// @desc    Submit job application
+// @desc    Submit job application (sends email with resume attachment)
 // @access  Public
 router.post('/', upload.single('resume'), async (req, res) => {
   try {
@@ -20,22 +21,41 @@ router.post('/', upload.single('resume'), async (req, res) => {
       return res.status(400).json({ message: 'Please upload your resume' });
     }
 
-    const resumePath = req.file.path;
+    // Prepare application data
+    const applicationData = {
+      name,
+      email,
+      phone,
+      position,
+      qualification,
+      experience,
+      message: message || ''
+    };
 
-    // Insert application
+    // Send email with resume attachment
+    try {
+      await sendApplicationEmail(applicationData, req.file);
+    } catch (emailError) {
+      console.error('Email sending failed:', emailError);
+      return res.status(500).json({ 
+        message: 'Failed to send application email. Please try again or contact support@sunsys.in directly.' 
+      });
+    }
+
+    // Store application in database (without resume path)
     const [result] = await db.query(
-      'INSERT INTO job_applications (name, email, phone, position, qualification, experience, resume, message) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-      [name, email, phone, position, qualification, experience, resumePath, message || '']
+      'INSERT INTO job_applications (name, email, phone, position, qualification, experience, message) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      [name, email, phone, position, qualification, experience, message || '']
     );
 
     res.status(201).json({
       success: true,
-      message: 'Application submitted successfully',
+      message: 'Application submitted successfully! You will receive a confirmation email shortly.',
       applicationId: result.insertId
     });
   } catch (error) {
     console.error('Submit application error:', error);
-    res.status(500).json({ message: 'Server error' });
+    res.status(500).json({ message: 'Server error. Please try again later.' });
   }
 });
 
@@ -117,12 +137,6 @@ router.delete('/:id', authMiddleware, async (req, res) => {
 
     if (existing.length === 0) {
       return res.status(404).json({ message: 'Application not found' });
-    }
-
-    // Delete resume file
-    const fs = require('fs');
-    if (fs.existsSync(existing[0].resume)) {
-      fs.unlinkSync(existing[0].resume);
     }
 
     await db.query('DELETE FROM job_applications WHERE id = ?', [req.params.id]);

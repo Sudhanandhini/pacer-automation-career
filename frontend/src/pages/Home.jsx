@@ -159,7 +159,10 @@ const Home = () => {
                 <p className="text-gray-600 leading-relaxed mb-6">
                   Ensure the seamless operation, security, and scalability of an organization's IT environment. IMS covers the proactive management of servers, networks, storage, data centers, and cloud systems to minimize downtime and enhance performance.
                 </p>
-                <a
+                <Link to="/infrastructure-management" className="btn-primary">
+                  View More
+                </Link>
+                {/* <a
                   href="#"
                   className="inline-flex items-center gap-2 font-semibold py-3 px-8 rounded-md transition-all hover:shadow-lg"
                   style={{ backgroundColor: '#00BFA5', color: 'white' }}
@@ -168,7 +171,7 @@ const Home = () => {
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
-                </a>
+                </a> */}
               </div>
 
 
@@ -206,7 +209,10 @@ const Home = () => {
                 <p className="text-gray-600 leading-relaxed mb-6">
                   Design, deploy and monitor resilient networks with layered security. We protect data and users through firewalls, VPNs, IDS/IPS and continual threat monitoring to keep your business safe and online.
                 </p>
-                <a
+                 <Link to="/network-security" className="btn-primary">
+                  View More
+                </Link>
+                {/* <a
                   href="#"
                   className="inline-flex items-center gap-2 font-semibold py-3 px-8 rounded-md transition-all hover:shadow-lg"
                   style={{ backgroundColor: '#00BFA5', color: 'white' }}
@@ -215,7 +221,7 @@ const Home = () => {
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
-                </a>
+                </a> */}
               </div>
             </motion.div>
 
@@ -251,7 +257,10 @@ const Home = () => {
                 <p className="text-gray-600 leading-relaxed mb-6">
                   Deliver modern, secure and productive endpoints—laptops, desktops and mobile—managed centrally with patching, ITSM integration and user support to maximize workforce productivity.
                 </p>
-                <a
+                 <Link to="/user-computing" className="btn-primary">
+                  View More
+                </Link>
+                {/* <a
                   href="#"
                   className="inline-flex items-center gap-2 font-semibold py-3 px-8 rounded-md transition-all hover:shadow-lg"
                   style={{ backgroundColor: '#00BFA5', color: 'white' }}
@@ -260,7 +269,7 @@ const Home = () => {
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
-                </a>
+                </a> */}
               </div>
             </motion.div>
 
@@ -296,7 +305,10 @@ const Home = () => {
                 <p className="text-gray-600 leading-relaxed mb-6">
                   Expert IT consulting to align technology with business goals—assessments, roadmaps and cost-optimization plans that reduce risk and accelerate digital transformation.
                 </p>
-                <a
+                 <Link to="/consulting-services" className="btn-primary">
+                  View More
+                </Link>
+                {/* <a
                   href="#"
                   className="inline-flex items-center gap-2 font-semibold py-3 px-8 rounded-md transition-all hover:shadow-lg"
                   style={{ backgroundColor: '#00BFA5', color: 'white' }}
@@ -305,7 +317,7 @@ const Home = () => {
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
-                </a>
+                </a> */}
               </div>
             </motion.div>
 
@@ -340,7 +352,10 @@ const Home = () => {
                 <p className="text-gray-600 leading-relaxed mb-6">
                   Migrate, modernize and manage cloud workloads across public, private and hybrid environments for scalability, cost control and improved agility.
                 </p>
-                <a
+                  <Link to="/cloud-solutions" className="btn-primary">
+                  View More
+                </Link>
+                {/* <a
                   href="#"
                   className="inline-flex items-center gap-2 font-semibold py-3 px-8 rounded-md transition-all hover:shadow-lg"
                   style={{ backgroundColor: '#00BFA5', color: 'white' }}
@@ -349,7 +364,7 @@ const Home = () => {
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
-                </a>
+                </a> */}
               </div>
             </motion.div>
 
@@ -386,7 +401,10 @@ const Home = () => {
                 <p className="text-gray-600 leading-relaxed mb-6">
                   End-to-end implementation and migration services with minimal disruption—planning, testing and cutover support to ensure smooth transitions and measurable outcomes.
                 </p>
-                <a
+                  <Link to="/implementation-migration" className="btn-primary">
+                  View More
+                </Link>
+                {/* <a
                   href="#"
                   className="inline-flex items-center gap-2 font-semibold py-3 px-8 rounded-md transition-all hover:shadow-lg"
                   style={{ backgroundColor: '#00BFA5', color: 'white' }}
@@ -395,7 +413,7 @@ const Home = () => {
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
-                </a>
+                </a> */}
               </div>
             </motion.div>
           </div>

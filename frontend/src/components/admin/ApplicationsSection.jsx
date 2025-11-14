@@ -225,13 +225,13 @@ const ApplicationsSection = () => {
                     <Eye className="w-4 h-4" />
                     <span>View Details</span>
                   </button>
-                  <button
+                  {/* <button
                     onClick={() => handleDownloadResume(application.resume)}
                     className="flex items-center space-x-1 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-all"
                   >
                     <Download className="w-4 h-4" />
                     <span>Resume</span>
-                  </button>
+                  </button> */}
                   <button
                     onClick={() => handleDelete(application.id)}
                     className="flex items-center space-x-1 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-all"
@@ -327,13 +327,13 @@ const ApplicationsSection = () => {
 
               {/* Actions */}
               <div className="flex space-x-4">
-                <button
+                {/* <button
                   onClick={() => handleDownloadResume(selectedApplication.resume)}
                   className="flex-1 bg-[#00BFA5] text-white py-3 px-6 rounded-lg hover:bg-[#00BFA5]/90 transition-all font-semibold flex items-center justify-center"
                 >
                   <Download className="w-5 h-5 mr-2" />
                   Download Resume
-                </button>
+                </button> */}
                 <button
                   onClick={() => handleDelete(selectedApplication.id)}
                   className="flex-1 bg-red-500 text-white py-3 px-6 rounded-lg hover:bg-red-600 transition-all font-semibold flex items-center justify-center"
