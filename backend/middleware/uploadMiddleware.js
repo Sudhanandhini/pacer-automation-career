@@ -1,14 +1,16 @@
 const multer = require('multer');
 const path = require('path');
 
-// Use memory storage (file stored in buffer, not disk)
+// Use memory storage to keep file in buffer for email attachment
 const storage = multer.memoryStorage();
 
-// File filter
 const fileFilter = (req, file, cb) => {
+  // Accept only PDF, DOC, and DOCX files
   const allowedTypes = /pdf|doc|docx/;
   const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
-  const mimetype = allowedTypes.test(file.mimetype);
+  const mimetype = file.mimetype === 'application/pdf' || 
+                   file.mimetype === 'application/msword' || 
+                   file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
 
   if (mimetype && extname) {
     return cb(null, true);
@@ -17,13 +19,12 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-// Multer upload configuration
 const upload = multer({
   storage: storage,
   limits: {
     fileSize: 5 * 1024 * 1024, // 5MB limit
   },
-  fileFilter: fileFilter
+  fileFilter: fileFilter,
 });
 
 module.exports = upload;
