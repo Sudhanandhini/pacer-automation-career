@@ -15,7 +15,7 @@ import ConsultingServices from './pages/ConsultingServices';
 import CloudSolutions from './pages/CloudSolutions';
 import AI from "./pages/AI";
 import CyberSecurity from './pages/CyberSecurity';
-
+import Career1 from './pages/Career1';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 
@@ -32,7 +32,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/offerings" element={<Offerings />} />
             <Route path="/alliance" element={<Alliance />} />
-            <Route path="/career" element={<Career />} />
+            {/* <Route path="/career" element={<Career />} /> */}
             <Route path="/network-security" element={<NetworkSecuritySolutions />} />
             <Route path="/user-computing" element={<UserComputing />} />
             <Route path="/consulting-services" element={<ConsultingServices />} />
@@ -44,7 +44,7 @@ function App() {
             <Route path="/career" element={<Career />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
-
+            <Route path="/career1" element={<Career1 />} />
           </Routes>
         </main>
         <Footer />

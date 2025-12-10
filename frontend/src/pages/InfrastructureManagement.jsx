@@ -234,7 +234,7 @@ const InfrastructureManagement = () => {
               <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: '#1E3A8A' }}>
                 Why Choose Pacer Automation?
               </h2>
-              <p className="text-gray-600 leading-relaxed mb-6">
+              <p className="text-gray-600 leading-relaxed mb-6 text-small">
                 To address these challenges, Pacer Automation offers a comprehensive suite of IT Infrastructure Management Services, which focus on deploying and managing technologies, following industry best practices at an optimized cost.
               </p>
               <h3 className="text-xl font-bold mb-4" style={{ color: '#1E3A8A' }}>
@@ -243,7 +243,7 @@ const InfrastructureManagement = () => {
               <div className="space-y-3">
                 {benefits.map((benefit, index) => (
                   <div key={index} className="flex items-start gap-3">
-                    <FiCheckCircle className="text-xl flex-shrink-0 mt-1" style={{ color: '#00BFA5' }} />
+                    <FiCheckCircle className="text-small flex-shrink-0 mt-1" style={{ color: '#00BFA5' }} />
                     <p className="text-gray-600">{benefit}</p>
                   </div>
                 ))}

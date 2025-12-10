@@ -38,7 +38,7 @@ const Footer = () => {
           {/* About Us */}
           <div>
             <h3 className="text-xl font-bold mb-4">About Us</h3>
-            <p className="text-gray-400 text-sm leading-relaxed">
+            <p className="text-gray-400 text-sm leading-relaxed" style={{fontSize: "14px"}}>
               Pacer Automation is a leading System Integrator providing enterprise-class IT solutions and services. We specialize in delivering comprehensive infrastructure solutions that drive business success.
             </p>
           </div>
@@ -64,8 +64,8 @@ const Footer = () => {
               <div className="flex items-start gap-3">
                 <MdPhone className="text-teal-500 text-xl mt-1" />
                 <div>
-                  <p className="text-gray-400 text-sm">+91 97428 23131</p>
-                  <p className="text-gray-400 text-sm">080 4973 4119</p>
+                  <p className="text-gray-400 text-sm" style={{fontSize: "14px"}}>+91 97428 23131</p>
+                  <p className="text-gray-400 text-sm" style={{fontSize: "14px"}}>080 4973 4119</p>
                  
                 </div>
               </div>
@@ -73,7 +73,7 @@ const Footer = () => {
               <div className="flex items-start gap-3">
                 <MdLocationOn className="text-teal-500 text-xl mt-1" />
                 <div>
-                  <p className="text-gray-400 text-sm">No. 33/5, First Floor, <br />Mount Kailash Building, <br/>
+                  <p className=" text-gray-400 text-sm" style={{fontSize: "14px"}}>No. 33/5, First Floor, <br />Mount Kailash Building, <br/>
 Meanee Avenue Road <br/>(Above HDFC Bank)
 Ulsoor, <br/>Bangalore-560 042, INDIA
 </p>
@@ -87,40 +87,40 @@ Ulsoor, <br/>Bangalore-560 042, INDIA
             <h3 className="text-xl font-bold mb-4">Quick Links</h3>
             <div className="space-y-4">
               <div>
-                <Link to="/" className="text-sm hover:text-teal-500 transition-colors">
+                <Link to="/" className="text-sm hover:text-teal-500 transition-colors text-gray-400">
                  Home
                 </Link>
                 
               </div>
            
               <div>
-                <Link to="/about" className="text-sm hover:text-teal-500 transition-colors">
+                <Link to="/about" className="text-sm hover:text-teal-500 transition-colors text-gray-400">
                   About Us
                 </Link>
                 
               </div>
               
               <div>
-                <Link to="/offerings" className="text-sm hover:text-teal-500 transition-colors">
+                <Link to="/offerings" className="text-sm hover:text-teal-500 transition-colors text-gray-400">
                   Offerings
                 </Link>
                 
               </div>
                 <div>
-                <Link to="/alliance" className="text-sm hover:text-teal-500 transition-colors">
+                <Link to="/alliance" className="text-sm hover:text-teal-500 transition-colors text-gray-400">
                   Alliance
                 </Link>
                 
               </div>
                 <div>
-                <Link to="/career" className="text-sm hover:text-teal-500 transition-colors">
+                <Link to="/career" className="text-sm hover:text-teal-500 transition-colors text-gray-400">
                   Career
                 </Link>
                 
               </div> 
               
               <div>
-                <Link to="/contact" className="text-sm hover:text-teal-500 transition-colors">
+                <Link to="/contact" className="text-sm hover:text-teal-500 transition-colors text-gray-400">
                  Contact Us
                 </Link>
                 
@@ -131,7 +131,7 @@ Ulsoor, <br/>Bangalore-560 042, INDIA
           {/* Be Social */}
           <div>
             <h3 className="text-xl font-bold mb-4">Be Social</h3>
-            <p className="text-gray-400 text-sm mb-4">
+            <p className="text-gray-400 text-sm mb-4" style={{fontSize: "14px"}}>
               Connect with us on social media to stay updated with our latest solutions and services.
             </p>
             <div className="flex gap-3">
@@ -166,7 +166,7 @@ Ulsoor, <br/>Bangalore-560 042, INDIA
       <div className="border-t border-gray-700">
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm">
+            <p className="text-gray-400 text-sm" style={{fontSize: "11px"}}>
               All Rights Reserved by Pacer Automation
             </p>
             
@@ -178,7 +178,7 @@ Ulsoor, <br/>Bangalore-560 042, INDIA
                 Terms of Service
               </Link>
             </div> */}
-            <p className="text-gray-400 text-sm">
+            <p className="text-gray-400 text-sm" style={{fontSize: "11px"}}>
               Developed by <a href="https://sunsys.in" className="hover:text-teal-500 transition-colors">Sunsys Technologies</a>
             </p>
           </div>

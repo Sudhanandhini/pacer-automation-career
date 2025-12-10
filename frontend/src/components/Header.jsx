@@ -107,7 +107,7 @@ const Header = () => {
             }`}>
               Alliance
             </Link>
-            <Link to="/career" className={`transition-colors ${
+            <Link to="/career1" className={`transition-colors ${
               isScrolled ? 'text-gray-700 hover:text-primary' : 'text-black hover:text-primary'
             }`}>
               Career

@@ -20,11 +20,13 @@ const db = require('./config/db');
 const adminRoutes = require('./routes/adminRoutes');
 const jobRoutes = require('./routes/jobRoutes');
 const applicationRoutes = require('./routes/applicationRoutes');
+const emailRoutes = require('./routes/emailRoutes'); // ADD THIS
 
 // Routes
 app.use('/api/admin', adminRoutes);
 app.use('/api/jobs', jobRoutes);
 app.use('/api/applications', applicationRoutes);
+app.use('/api', emailRoutes); // ADD THIS
 
 // Test route
 app.get('/', (req, res) => {
