@@ -19,11 +19,17 @@ import Career1 from './pages/Career1';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 
+import WhatsAppButton from './components/Whatsappbutton';
+import ScrollToTop from './components/Scrolltotop';
+
 
 function App() {
   return (
     <Router>
       <div className="flex flex-col min-h-screen">
+
+  <ScrollToTop />
+
         <Header />
         <main className="flex-grow">
           <Routes>
@@ -48,6 +54,8 @@ function App() {
           </Routes>
         </main>
         <Footer />
+
+         <WhatsAppButton /> 
       </div>
     </Router>
   );
