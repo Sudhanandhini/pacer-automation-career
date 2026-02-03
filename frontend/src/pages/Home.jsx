@@ -54,7 +54,7 @@ const Home = () => {
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-gray-50 to-white py-20 md:py-28">
+      <section className="bg-gradient-to-br from-gray-50 to-white py-12 md:py-12">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -150,7 +150,7 @@ const Home = () => {
               </div>
 
               <div className="relative z-10">
-                <span className="font-semibold text-sm uppercase tracking-wide" style={{ color: '#00BFA5' }}>
+                <span className="font-semibold text-sm uppercase tracking-wide" style={{ color: '#e53935' }}>
                   SMART IT SOLUTIONS
                 </span>
                 <h3 className="text-3xl font-bold mt-2 mb-4" style={{ color: '#1E3A8A' }}>
@@ -200,7 +200,7 @@ const Home = () => {
               </div>
               {/* Networking and Security Solutions */}
               <div className="relative z-10 mb-10">
-                <span className="font-semibold text-sm uppercase tracking-wide" style={{ color: '#00BFA5' }}>
+                <span className="font-semibold text-sm uppercase tracking-wide" style={{ color: '#e53935' }}>
                   SECURE NETWORKS
                 </span>
                 <h3 className="text-3xl font-bold mt-2 mb-4" style={{ color: '#1E3A8A' }}>
@@ -248,7 +248,7 @@ const Home = () => {
               </div>
               {/* User Computing */}
               <div className="relative z-10 mb-10">
-                <span className="font-semibold text-sm uppercase tracking-wide" style={{ color: '#00BFA5' }}>
+                <span className="font-semibold text-sm uppercase tracking-wide" style={{ color: '#e53935' }}>
                   END-USER EXPERIENCE
                 </span>
                 <h3 className="text-3xl font-bold mt-2 mb-4" style={{ color: '#1E3A8A' }}>
@@ -296,7 +296,7 @@ const Home = () => {
               </div>
               {/* Consulting Services */}
               <div className="relative z-10 mb-10">
-                <span className="font-semibold text-sm uppercase tracking-wide" style={{ color: '#00BFA5' }}>
+                <span className="font-semibold text-sm uppercase tracking-wide" style={{ color: '#e53935' }}>
                   STRATEGIC ADVISORY
                 </span>
                 <h3 className="text-3xl font-bold mt-2 mb-4" style={{ color: '#1E3A8A' }}>
@@ -343,7 +343,7 @@ const Home = () => {
                 />
               </div>
               <div className="relative z-10 mb-10">
-                <span className="font-semibold text-sm uppercase tracking-wide" style={{ color: '#00BFA5' }}>
+                <span className="font-semibold text-sm uppercase tracking-wide" style={{ color: '#e53935' }}>
                   CLOUD-FIRST
                 </span>
                 <h3 className="text-3xl font-bold mt-2 mb-4" style={{ color: '#1E3A8A' }}>
@@ -392,7 +392,7 @@ const Home = () => {
               </div>
               {/* Implementation And Migration Services */}
               <div className="relative z-10 mb-10">
-                <span className="font-semibold text-sm uppercase tracking-wide" style={{ color: '#00BFA5' }}>
+                <span className="font-semibold text-sm uppercase tracking-wide" style={{ color: '#e53935' }}>
                   FAST & SECURE
                 </span>
                 <h3 className="text-3xl font-bold mt-2 mb-4" style={{ color: '#1E3A8A' }}>

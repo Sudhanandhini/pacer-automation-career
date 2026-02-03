@@ -192,7 +192,7 @@ const Contact = () => {
                   </p>
                   <p className="text-gray-600 mt-2 hover:text-teal-500 transition-colors">
                     Board Line: +91 80 4282 3000<br />
-                    Fax: +91 80 4282 3003
+                   
                   </p>
                 </div>
               </div>
