@@ -101,12 +101,12 @@ const Header = () => {
                 )}
               </AnimatePresence>
             </div> 
-
+{/* 
             <Link to="/alliance" className={`transition-colors ${
               isScrolled ? 'text-gray-700 hover:text-primary' : 'text-black hover:text-primary'
             }`}>
               Alliance
-            </Link>
+            </Link> */}
             <Link to="/career" className={`transition-colors ${
               isScrolled ? 'text-gray-700 hover:text-primary' : 'text-black hover:text-primary'
             }`}>

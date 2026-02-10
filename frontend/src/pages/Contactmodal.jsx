@@ -3,6 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { IoClose } from 'react-icons/io5';
 import { FiMail, FiUser, FiMessageSquare, FiGlobe } from 'react-icons/fi';
 
+// API URL configuration - automatically switches between localhost and production
+const API_URL = import.meta.env.VITE_API_URL || 
+  (window.location.hostname === 'localhost' 
+    ? 'http://localhost:5000/api' 
+    : 'https://pacerautomation.com/api');
+
 const ContactModal = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -47,7 +53,7 @@ const ContactModal = ({ isOpen, onClose }) => {
     setSubmitStatus(null);
 
     try {
-      const response = await fetch('http://localhost:5000/api/send-email', {
+      const response = await fetch(`${API_URL}/send-email`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

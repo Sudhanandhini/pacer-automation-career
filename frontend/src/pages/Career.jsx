@@ -5,7 +5,14 @@ import axios from 'axios';
 import home from "../assets/SaaS-4.png";
 import home1 from "../assets/SaaS-5.png";
 
-const API_URL = 'http://localhost:5000/api';
+// API URL configuration - automatically switches between localhost and production
+const PROD_API_URL = 'https://pacerautomation.com/api';
+
+const API_URL = import.meta.env.VITE_API_URL || 
+  (typeof window !== 'undefined' && window.location.hostname === 'localhost'
+    ? 'http://localhost:5000/api'
+    : PROD_API_URL);
+
 
 const Career = () => {
   const [openPositions, setOpenPositions] = useState([]);

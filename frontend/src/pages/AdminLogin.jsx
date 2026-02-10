@@ -5,7 +5,16 @@ import { Lock, Mail, Eye, EyeOff } from "lucide-react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const API_URL = "http://localhost:5000/api";
+// 🔹 NEW: production API base
+const PROD_API_URL = "https://pacerautomation.com/api";
+
+// 🔹 NEW: choose API URL based on where the app is running
+const API_URL =
+  import.meta.env.VITE_API_URL || // if you set this in .env it will override
+  (typeof window !== "undefined" && window.location.hostname === "localhost"
+    ? "http://localhost:5000/api" // local development
+    : PROD_API_URL);              // live site
+
 
 
 const AdminLogin = () => {

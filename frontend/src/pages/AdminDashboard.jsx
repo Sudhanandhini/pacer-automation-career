@@ -6,7 +6,15 @@ import JobOpeningsSection from '../components/admin/JobOpeningsSection';
 import ApplicationsSection from '../components/admin/ApplicationsSection';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api';
+// 🔹 production API base
+const PROD_API_URL = 'https://pacerautomation.com/api';
+
+// 🔹 choose API URL based on environment (same pattern as AdminLogin.jsx)
+const API_URL =
+  import.meta.env.VITE_API_URL ||
+  (typeof window !== 'undefined' && window.location.hostname === 'localhost'
+    ? 'http://localhost:5000/api'
+    : PROD_API_URL);
 
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState('openings');

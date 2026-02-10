@@ -4,6 +4,12 @@ import { FiPhone, FiMail, FiMapPin } from 'react-icons/fi';
 import bgimage from '../assets/circles-overlay-3.png';
 import contact from "../assets/contact.jpg";
 
+// API URL configuration - automatically switches between localhost and production
+const API_URL = import.meta.env.VITE_API_URL || 
+  (window.location.hostname === 'localhost' 
+    ? 'http://localhost:5000/api' 
+    : 'https://pacerautomation.com/api');
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -49,7 +55,7 @@ const Contact = () => {
 
     try {
       // Send email via backend API - CORRECTED URL
-      const response = await fetch('http://localhost:5000/api/send-email', {
+      const response = await fetch(`${API_URL}/send-email`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -191,7 +197,7 @@ const Contact = () => {
                     Ulsoor, Bangalore-560 042, INDIA
                   </p>
                   <p className="text-gray-600 mt-2 hover:text-teal-500 transition-colors">
-                    Board Line: +91 80 4282 3000<br />
+                    Board Line: 080 4973 4119<br />
                    
                   </p>
                 </div>

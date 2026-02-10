@@ -1,22 +1,49 @@
 const nodemailer = require('nodemailer');
 
-// Create transporter
+// Detailed email configuration logging
+console.log('\n📧 ===== EMAIL CONFIGURATION =====');
+console.log('HOST:', process.env.EMAIL_HOST || 'smtp.gmail.com');
+console.log('PORT:', process.env.EMAIL_PORT || 587);
+console.log('USER:', process.env.EMAIL_USER || 'NOT SET');
+console.log('PASS length:', process.env.EMAIL_PASS ? process.env.EMAIL_PASS.length : 'NOT SET');
+console.log('PASS (no spaces):', process.env.EMAIL_PASS ? process.env.EMAIL_PASS.replace(/\s/g, '') : 'NOT SET');
+console.log('TO:', process.env.EMAIL_TO || 'NOT SET');
+console.log('===========================\n');
+
+// Create transporter with optimized Gmail SMTP settings
 const transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_HOST || 'smtp.gmail.com',
-  port: process.env.EMAIL_PORT || 587,
-  secure: false, // true for 465, false for other ports
+  service: 'gmail', // Use Gmail service directly
+  host: 'smtp.gmail.com',
+  port: 587,
+  secure: false, // TLS (not SSL)
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
+  tls: {
+    rejectUnauthorized: false,
+    minVersion: 'TLSv1.2'
+  },
+  connectionTimeout: 10000,
+  socketTimeout: 15000,
+  pool: {
+    maxConnections: 1,
+    maxMessages: 100,
+    rateDelta: 1000,
+    rateLimit: 5
+  },
+  logger: true,
+  debug: true
 });
 
 // Verify transporter configuration on startup
 transporter.verify((error, success) => {
   if (error) {
-    console.error('Email transporter verification failed:', error);
+    console.error('❌ Email transporter verification failed:');
+    console.error('Error:', error.message);
+    console.error('Code:', error.code);
   } else {
-    console.log('Email server is ready to send messages');
+    console.log('✅ Email server is ready to send messages');
   }
 });
 

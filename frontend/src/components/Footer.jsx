@@ -114,12 +114,12 @@ const Footer = () => {
                   </Link>
                   
                 </div>
-                  <div>
+                  {/* <div>
                   <Link to="/alliance" className="text-sm hover:text-teal-500 transition-colors text-gray-400">
                     Alliance
                   </Link>
                   
-                </div>
+                </div> */}
                   <div>
                   <Link to="/career" className="text-sm hover:text-teal-500 transition-colors text-gray-400">
                     Career

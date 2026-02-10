@@ -3,7 +3,16 @@ import { motion } from 'framer-motion';
 import { Plus, Edit2, Trash2, MapPin, Briefcase, X, Check } from 'lucide-react';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api';
+// 🔹 production API base
+const PROD_API_URL = 'https://pacerautomation.com/api';
+
+// 🔹 choose API URL based on environment
+const API_URL =
+  import.meta.env.VITE_API_URL ||
+  (typeof window !== 'undefined' && window.location.hostname === 'localhost'
+    ? 'http://localhost:5000/api'
+    : PROD_API_URL);
+
 
 const JobOpeningsSection = () => {
   const [jobs, setJobs] = useState([]);
