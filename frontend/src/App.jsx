@@ -15,6 +15,7 @@ import ConsultingServices from './pages/ConsultingServices';
 import CloudSolutions from './pages/CloudSolutions';
 import AI from "./pages/AI";
 import CyberSecurity from './pages/CyberSecurity';
+import DatacenterSolution from './pages/DatacenterSolution';
 import Career1 from './pages/Career1';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
@@ -45,8 +46,9 @@ function App() {
             <Route path="/implementation-migration" element={<ImplementationMigration />} />
             <Route path="/infrastructure-management" element={<InfrastructureManagement />} />
             <Route path="/cloud-solutions" element={<CloudSolutions />} />
-            <Route path="/ai" element={<AI />} />
+            {/* <Route path="/ai" element={<AI />} /> */}
             <Route path="/cyber-security" element={< CyberSecurity />} />
+            <Route path="/datacenter-solution" element={<DatacenterSolution />} />
             <Route path="/career" element={<Career />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin/dashboard" element={<AdminDashboard />} />

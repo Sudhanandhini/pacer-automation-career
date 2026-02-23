@@ -16,8 +16,9 @@ const Header = () => {
     { label: 'User Computing', to: '/user-computing' },
     { label: 'Implementation & Migration', to: '/implementation-migration' },
     { label: 'Consulting Services', to: '/consulting-services' },
-    {label:'AI', to:'/ai'},
-    {label:'CyberSecurity', to:'/cyber-security'}
+    // {label:'AI', to:'/ai'},
+    {label:'CyberSecurity', to:'/cyber-security'},
+    {label:'Datacenter Solution', to:'/datacenter-solution'}
   ];
 
   // Scroll detection

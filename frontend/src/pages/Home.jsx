@@ -9,6 +9,7 @@ import home4 from "../assets/consulting-service.jpg";
 import home51 from "../assets/network-security.jpg";
 import home6 from "../assets/implementation.jpg";
 import home7 from "../assets/cloud-solutions.jpg";
+import home8 from "../assets/infrastructure.jpg";
 import circle1 from "../assets/circle1.png";
 import AboutCompanySection from './AboutCompanySection';
 import LogoSlider from './LogoSlider';
@@ -154,7 +155,7 @@ const Home = () => {
                   SMART IT SOLUTIONS
                 </span>
                 <h3 className="text-3xl font-bold mt-2 mb-4" style={{ color: '#1E3A8A' }}>
-                  Infrastructure Management Services
+                 Infrastructure Management
                 </h3>
                 <p className="text-gray-600 leading-relaxed mb-6">
                   Ensure the seamless operation, security, and scalability of an organization's IT environment. IMS covers the proactive management of servers, networks, storage, data centers, and cloud systems to minimize downtime and enhance performance.
@@ -252,7 +253,7 @@ const Home = () => {
                   END-USER EXPERIENCE
                 </span>
                 <h3 className="text-3xl font-bold mt-2 mb-4" style={{ color: '#1E3A8A' }}>
-                  User Computing
+                 End-user Support Service
                 </h3>
                 <p className="text-gray-600 leading-relaxed mb-6">
                   Deliver modern, secure and productive endpoints—laptops, desktops and mobile—managed centrally with patching, ITSM integration and user support to maximize workforce productivity.
@@ -416,6 +417,93 @@ const Home = () => {
                 </a> */}
               </div>
             </motion.div>
+
+              <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="grid md:grid-cols-2 gap-12 items-center relative"
+            >
+              {/* Circle Background - Right Side */}
+              <div className="absolute -translate-y-1/2 w-96 h-96 opacity-70 pointer-events-none hidden lg:block"
+                style={{ right: "-24%", transform: "rotate(270deg)" }}>
+                <img src={circle1} alt="" className="w-full h-full object-contain" />
+              </div>
+
+              <div className="relative z-10">
+                <img
+                  src={home2}
+                  alt="Quick Setup"
+                  className="w-full"
+                />
+              </div>
+
+              <div className="relative z-10">
+                <span className="font-semibold text-sm uppercase tracking-wide" style={{ color: '#e53935' }}>
+                  Cloud Security
+                </span>
+                <h3 className="text-3xl font-bold mt-2 mb-4" style={{ color: '#1E3A8A' }}>
+                Cyber security solution
+                </h3>
+                <p className="text-gray-600 leading-relaxed mb-6">
+             Protect your business from cyber threats with advanced, AI-driven security solutions. Our Cyber Security services safeguard your network, data, applications, and users from evolving attacks. From threat detection to incident response, we ensure complete protection, compliance, and business continuity.
+                </p>
+                <Link to="/cyber-security" className="btn-primary">
+                  View More
+                </Link>
+                {/* <a
+                  href="#"
+                  className="inline-flex items-center gap-2 font-semibold py-3 px-8 rounded-md transition-all hover:shadow-lg"
+                  style={{ backgroundColor: '#00BFA5', color: 'white' }}
+                >
+                  View More
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </a> */}
+              </div>
+
+
+            </motion.div>
+
+            {/* Datacenter Solution */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="grid md:grid-cols-2 gap-12 items-center relative"
+            >
+              {/* Circle Background - Left Side */}
+              <div className="absolute -translate-y-1/2 w-96 h-96 opacity-70 pointer-events-none hidden lg:block"
+                style={{ left: "-23%", transform: "rotate(90deg)" }}>
+                <img src={circle1} alt="" className="w-full h-full object-contain" />
+              </div>
+
+              <div className="md:order-2 relative z-10">
+                <img
+                  src={home8}
+                  alt="Datacenter Solution"
+                  className="w-full"
+                />
+              </div>
+              <div className="relative z-10 mb-10">
+                <span className="font-semibold text-sm uppercase tracking-wide" style={{ color: '#e53935' }}>
+                  DATACENTER EXCELLENCE
+                </span>
+                <h3 className="text-3xl font-bold mt-2 mb-4" style={{ color: '#1E3A8A' }}>
+                  Datacenter Solution
+                </h3>
+                <p className="text-gray-600 leading-relaxed mb-6">
+                  Build, manage and modernize your datacenter with confidence. From physical design and server infrastructure to virtualization, networking, power management, and zero-downtime migrations — we deliver reliable, secure, and scalable datacenter solutions.
+                </p>
+                <Link to="/datacenter-solution" className="btn-primary">
+                  View More
+                </Link>
+              </div>
+            </motion.div>
+
           </div>
         </div>
       </section>

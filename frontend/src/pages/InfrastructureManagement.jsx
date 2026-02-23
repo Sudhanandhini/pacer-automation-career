@@ -134,7 +134,7 @@ const InfrastructureManagement = () => {
                 Our Offering
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight" style={{ color: '#1E3A8A' }}>
-                Infrastructure Management Services
+              Infrastructure Management
               </h1>
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                 Comprehensive IT Infrastructure Management Services that focus on deploying and managing technologies following industry best practices at an optimized cost.
