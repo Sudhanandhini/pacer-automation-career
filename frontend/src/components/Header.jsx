@@ -10,15 +10,19 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const offerings = [
-    { label: 'Infrastructure Management', to: '/infrastructure-management' },
-    { label: 'Cloud Solutions', to: '/cloud-solutions' },
-    { label: 'Network & Security Solutions', to: '/network-security' },
-    { label: 'User Computing', to: '/user-computing' },
+    { label: 'IT Service Management', to: '/infrastructure-management' },
+       { label: 'Network & Security Solutions', to: '/network-security' },
+        {label:'Cybersecurity Solutions', to:'/cyber-security'},
+         { label: 'Cloud Solutions', to: '/cloud-solutions' },
+    { label: 'End-user Support Service', to: '/user-computing' },
+   
+ 
     { label: 'Implementation & Migration', to: '/implementation-migration' },
+        {label:'Datacenter Solution', to:'/datacenter-solution'},
     { label: 'Consulting Services', to: '/consulting-services' },
     // {label:'AI', to:'/ai'},
-    {label:'CyberSecurity', to:'/cyber-security'},
-    {label:'Datacenter Solution', to:'/datacenter-solution'}
+   
+
   ];
 
   // Scroll detection

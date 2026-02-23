@@ -155,7 +155,7 @@ const Home = () => {
                   SMART IT SOLUTIONS
                 </span>
                 <h3 className="text-3xl font-bold mt-2 mb-4" style={{ color: '#1E3A8A' }}>
-                 Infrastructure Management
+               IT Service Management
                 </h3>
                 <p className="text-gray-600 leading-relaxed mb-6">
                   Ensure the seamless operation, security, and scalability of an organization's IT environment. IMS covers the proactive management of servers, networks, storage, data centers, and cloud systems to minimize downtime and enhance performance.
@@ -483,7 +483,7 @@ const Home = () => {
 
               <div className="md:order-2 relative z-10">
                 <img
-                  src={home8}
+                  src={home7}
                   alt="Datacenter Solution"
                   className="w-full"
                 />
@@ -503,6 +503,10 @@ const Home = () => {
                 </Link>
               </div>
             </motion.div>
+
+
+
+            
 
           </div>
         </div>
