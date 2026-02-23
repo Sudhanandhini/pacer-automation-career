@@ -3,8 +3,18 @@ const router = express.Router();
 const nodemailer = require('nodemailer');
 
 console.log('\n📧 ===== INITIALIZING EMAIL SERVICE =====');
+<<<<<<< HEAD
 console.log('EMAIL_HOST:', process.env.EMAIL_HOST || 'smtp.gmail.com');
 console.log('EMAIL_PORT:', process.env.EMAIL_PORT || 587);
+=======
+const EMAIL_HOST = process.env.EMAIL_HOST || 'smtp.gmail.com';
+const EMAIL_PORT = Number(process.env.EMAIL_PORT || 587);
+const EMAIL_SECURE = String(process.env.EMAIL_SECURE || '').toLowerCase() === 'true' || EMAIL_PORT === 465;
+
+console.log('EMAIL_HOST:', EMAIL_HOST);
+console.log('EMAIL_PORT:', EMAIL_PORT);
+console.log('EMAIL_SECURE:', EMAIL_SECURE);
+>>>>>>> 2986b93 (change)
 console.log('EMAIL_USER:', process.env.EMAIL_USER ? '✓ SET' : '❌ NOT SET');
 console.log('EMAIL_PASS:', process.env.EMAIL_PASS ? `✓ SET (${process.env.EMAIL_PASS.length} chars)` : '❌ NOT SET');
 console.log('EMAIL_TO:', process.env.EMAIL_TO ? '✓ SET' : '❌ NOT SET');
@@ -13,10 +23,16 @@ console.log('========================================\n');
 
 // Email transporter for contact form - optimized for Gmail
 const transporter = nodemailer.createTransport({
+<<<<<<< HEAD
   service: 'gmail', // Use Gmail service directly
   host: 'smtp.gmail.com',
   port: 587,
   secure: false, // TLS (not SSL)
+=======
+  host: EMAIL_HOST,
+  port: EMAIL_PORT,
+  secure: EMAIL_SECURE,
+>>>>>>> 2986b93 (change)
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS
@@ -209,10 +225,16 @@ router.get('/test-email', async (req, res) => {
     
     // Test transporter
     const testTransporter = nodemailer.createTransport({
+<<<<<<< HEAD
       service: 'gmail',
       host: 'smtp.gmail.com',
       port: 587,
       secure: false,
+=======
+      host: EMAIL_HOST,
+      port: EMAIL_PORT,
+      secure: EMAIL_SECURE,
+>>>>>>> 2986b93 (change)
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
@@ -277,10 +299,16 @@ router.post('/test-email', async (req, res) => {
     
     // Test transporter
     const testTransporter = nodemailer.createTransport({
+<<<<<<< HEAD
       service: 'gmail',
       host: 'smtp.gmail.com',
       port: 587,
       secure: false,
+=======
+      host: EMAIL_HOST,
+      port: EMAIL_PORT,
+      secure: EMAIL_SECURE,
+>>>>>>> 2986b93 (change)
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
@@ -335,4 +363,8 @@ router.post('/test-email', async (req, res) => {
 });
 
 
+<<<<<<< HEAD
 module.exports = router;
+=======
+module.exports = router;
+>>>>>>> 2986b93 (change)

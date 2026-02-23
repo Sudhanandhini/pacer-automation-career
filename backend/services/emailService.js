@@ -1,13 +1,26 @@
 const nodemailer = require('nodemailer');
 
+<<<<<<< HEAD
 // Detailed email configuration logging
 console.log('\n📧 ===== EMAIL CONFIGURATION =====');
 console.log('HOST:', process.env.EMAIL_HOST || 'smtp.gmail.com');
 console.log('PORT:', process.env.EMAIL_PORT || 587);
+=======
+const EMAIL_HOST = process.env.EMAIL_HOST || 'smtp.gmail.com';
+const EMAIL_PORT = Number(process.env.EMAIL_PORT || 587);
+const EMAIL_SECURE = String(process.env.EMAIL_SECURE || '').toLowerCase() === 'true' || EMAIL_PORT === 465;
+
+// Detailed email configuration logging
+console.log('\nEmail configuration');
+console.log('HOST:', EMAIL_HOST);
+console.log('PORT:', EMAIL_PORT);
+console.log('SECURE:', EMAIL_SECURE);
+>>>>>>> 2986b93 (change)
 console.log('USER:', process.env.EMAIL_USER || 'NOT SET');
 console.log('PASS length:', process.env.EMAIL_PASS ? process.env.EMAIL_PASS.length : 'NOT SET');
 console.log('PASS (no spaces):', process.env.EMAIL_PASS ? process.env.EMAIL_PASS.replace(/\s/g, '') : 'NOT SET');
 console.log('TO:', process.env.EMAIL_TO || 'NOT SET');
+<<<<<<< HEAD
 console.log('===========================\n');
 
 // Create transporter with optimized Gmail SMTP settings
@@ -16,6 +29,15 @@ const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
   port: 587,
   secure: false, // TLS (not SSL)
+=======
+console.log('---------------------------\n');
+
+// Create transporter using environment SMTP settings
+const transporter = nodemailer.createTransport({
+  host: EMAIL_HOST,
+  port: EMAIL_PORT,
+  secure: EMAIL_SECURE,
+>>>>>>> 2986b93 (change)
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
@@ -35,7 +57,6 @@ const transporter = nodemailer.createTransport({
   logger: true,
   debug: true
 });
-
 // Verify transporter configuration on startup
 transporter.verify((error, success) => {
   if (error) {

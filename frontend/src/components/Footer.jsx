@@ -149,7 +149,8 @@ const Footer = () => {
                 <a href="#" className="w-10 h-10 bg-gray-700 hover:bg-teal-500 rounded-full flex items-center justify-center transition-colors">
                   <FaTwitter />
                 </a> */}
-                <a href="#" className="w-10 h-10 bg-gray-700 hover:bg-teal-500 rounded-full flex items-center justify-center transition-colors">
+                <a href="https://www.linkedin.com/company/pacer-automation-pvt-ltd---hp-partner/?originalSubdomain=in"  target="_blank"
+                className="w-10 h-10 bg-gray-700 hover:bg-teal-500 rounded-full flex items-center justify-center transition-colors">
                   <FaLinkedinIn />
                 </a>
                 {/* <a href="#" className="w-10 h-10 bg-gray-700 hover:bg-teal-500 rounded-full flex items-center justify-center transition-colors">

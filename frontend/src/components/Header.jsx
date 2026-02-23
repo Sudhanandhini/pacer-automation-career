@@ -51,7 +51,7 @@ const Header = () => {
           <Link to="/" className={`text-2xl font-bold transition-colors ${
             isScrolled ? 'text-secondary' : 'text-black'
           }`}>
-            <img src={logo10} alt='logo' width="70%" />
+            <img src={logo10} alt='logo' width="90%" />
           </Link>
 
           {/* Desktop Menu */}
@@ -123,7 +123,7 @@ const Header = () => {
           <button
             onClick={() => setIsOpen(!isOpen)}
             className={`lg:hidden text-2xl ${
-              isScrolled ? 'text-secondary' : 'text-white'
+              isScrolled ? 'text-secondary' : 'text-black'
             }`}
           >
             {isOpen ? <FiX /> : <FiMenu />}
@@ -141,12 +141,12 @@ const Header = () => {
             >
               <div className="flex flex-col space-y-4">
                 <Link to="/" className={`transition-colors ${
-                  isScrolled ? 'text-gray-700 hover:text-primary' : 'text-white hover:text-primary'
+                  isScrolled ? 'text-gray-700 hover:text-primary' : 'text-black hover:text-primary'
                 }`} onClick={() => setIsOpen(false)}>
                   Home
                 </Link>
                 <Link to="/about" className={`transition-colors ${
-                  isScrolled ? 'text-gray-700 hover:text-primary' : 'text-white hover:text-primary'
+                  isScrolled ? 'text-gray-700 hover:text-primary' : 'text-black hover:text-primary'
                 }`} onClick={() => setIsOpen(false)}>
                   About Us
                 </Link>
@@ -155,7 +155,7 @@ const Header = () => {
                   <button
                     onClick={() => setShowSubmenu(!showSubmenu)}
                     className={`transition-colors flex items-center gap-1 w-full ${
-                      isScrolled ? 'text-gray-700 hover:text-primary' : 'text-white hover:text-primary'
+                      isScrolled ? 'text-gray-700 hover:text-primary' : 'text-black hover:text-primary'
                     }`}
                   >
                     Our Offering
@@ -169,7 +169,7 @@ const Header = () => {
                           key={index}
                           to={item.to}
                           className={`block text-sm transition-colors ${
-                            isScrolled ? 'text-gray-600 hover:text-primary' : 'text-gray-200 hover:text-primary'
+                            isScrolled ? 'text-gray-600 hover:text-primary' : 'text-black hover:text-primary'
                           }`}
                           onClick={() => setIsOpen(false)}
                         >
@@ -181,17 +181,17 @@ const Header = () => {
                 </div>
 
                 <Link to="/alliance" className={`transition-colors ${
-                  isScrolled ? 'text-gray-700 hover:text-primary' : 'text-white hover:text-primary'
+                  isScrolled ? 'text-gray-700 hover:text-primary' : 'text-black hover:text-primary'
                 }`} onClick={() => setIsOpen(false)}>
                   Alliance
                 </Link>
                 <Link to="/career" className={`transition-colors ${
-                  isScrolled ? 'text-gray-700 hover:text-primary' : 'text-white hover:text-primary'
+                  isScrolled ? 'text-gray-700 hover:text-primary' : 'text-black hover:text-primary'
                 }`} onClick={() => setIsOpen(false)}>
                   Career
                 </Link>
                 <Link to="/contact" className={`transition-colors ${
-                  isScrolled ? 'text-gray-700 hover:text-primary' : 'text-white hover:text-primary'
+                  isScrolled ? 'text-gray-700 hover:text-primary' : 'text-black hover:text-primary'
                 }`} onClick={() => setIsOpen(false)}>
                   Contact Us
                 </Link>

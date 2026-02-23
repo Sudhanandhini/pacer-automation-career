@@ -1,32 +1,50 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import logo1 from "../assets/1.jpg";
-import logo2 from "../assets/2.png";
-import logo3 from "../assets/3.png";
-import logo4 from "../assets/4.png";
-import logo5 from "../assets/5.png";
-import logo6 from "../assets/6.png";
-import logo7 from "../assets/7.png";
-import logo8 from "../assets/8.png";
-import logo9 from "../assets/9.png";
-
-import logo11 from "../assets/11.jpg";
-import logo12 from "../assets/12.jpg";
+import awsLogo from "../assets/client/aws.png";
+import azureLogo from "../assets/client/azure.png";
+import checkPointLogo from "../assets/client/check-point.png";
+import crowdstrikeLogo from "../assets/client/crowdstrike.png";
+import cyberarkLogo from "../assets/client/cyberark.png";
+import dellLogo from "../assets/client/dell.png";
+import fortinetLogo from "../assets/client/fortinet.png";
+import hpLogo from "../assets/client/hp.png";
+import hpeJuniperLogo from "../assets/client/hpe-juniper.png";
+import hpeLogo from "../assets/client/hpe.png";
+import lenovoLogo from "../assets/client/lenovo.png";
+import manageengineLogo from "../assets/client/manageengine.png";
+import motadataLogo from "../assets/client/motadata.png";
+import netskopeLogo from "../assets/client/netskope.png";
+import paloaltoLogo from "../assets/client/paloalto.png";
+import solarWindsLogo from "../assets/client/solar-winds.png";
+import sophosLogo from "../assets/client/sophos.png";
+import trellixLogo from "../assets/client/trellix.png";
+import trendMicroLogo from "../assets/client/trend-micro.png";
 
 const LogoSliderWithControls = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [slidesToShow, setSlidesToShow] = useState(3);
 
   const logos = [
-    logo1,
-    logo2,
-    logo3,
-    logo4,
-    logo5,
-    logo6,
-    logo7,
-    logo8, logo9,  logo11, logo12
+    awsLogo,
+    azureLogo,
+    checkPointLogo,
+    crowdstrikeLogo,
+    cyberarkLogo,
+    dellLogo,
+    fortinetLogo,
+    hpLogo,
+    hpeJuniperLogo,
+    hpeLogo,
+    lenovoLogo,
+    manageengineLogo,
+    motadataLogo,
+    netskopeLogo,
+    paloaltoLogo,
+    solarWindsLogo,
+    sophosLogo,
+    trellixLogo,
+    trendMicroLogo
   ];
 
   useEffect(() => {
@@ -101,13 +119,13 @@ const LogoSliderWithControls = () => {
                   className="flex-shrink-0 flex items-center justify-center bg-white rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow"
                   style={{ 
                     width: `calc(${100 / slidesToShow}% - ${(slidesToShow - 1) * 32 / slidesToShow}px)`,
-                    minHeight: '150px'
+                    height: '150px'
                   }}
                 >
                   <img 
                     src={logo} 
                     alt={`Partner ${index + 1}`}
-                    className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all"
+                    className="h-16 w-auto max-w-full object-contain grayscale hover:grayscale-0 transition-all"
                   />
                 </div>
               ))}
