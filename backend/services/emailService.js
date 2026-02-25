@@ -1,254 +1,183 @@
-const nodemailer = require('nodemailer');
+// emailservice.js
+// -----------------------------------------------------
+//  Gmail OAuth2 Email Service for Pacer Automation
+//  Complete Production-Ready Rewrite
+// -----------------------------------------------------
 
-<<<<<<< HEAD
-// Detailed email configuration logging
-console.log('\n📧 ===== EMAIL CONFIGURATION =====');
-console.log('HOST:', process.env.EMAIL_HOST || 'smtp.gmail.com');
-console.log('PORT:', process.env.EMAIL_PORT || 587);
-=======
-const EMAIL_HOST = process.env.EMAIL_HOST || 'smtp.gmail.com';
-const EMAIL_PORT = Number(process.env.EMAIL_PORT || 587);
-const EMAIL_SECURE = String(process.env.EMAIL_SECURE || '').toLowerCase() === 'true' || EMAIL_PORT === 465;
+const nodemailer = require("nodemailer");
+const { google } = require("googleapis");
 
-// Detailed email configuration logging
-console.log('\nEmail configuration');
-console.log('HOST:', EMAIL_HOST);
-console.log('PORT:', EMAIL_PORT);
-console.log('SECURE:', EMAIL_SECURE);
->>>>>>> 2986b93 (change)
-console.log('USER:', process.env.EMAIL_USER || 'NOT SET');
-console.log('PASS length:', process.env.EMAIL_PASS ? process.env.EMAIL_PASS.length : 'NOT SET');
-console.log('PASS (no spaces):', process.env.EMAIL_PASS ? process.env.EMAIL_PASS.replace(/\s/g, '') : 'NOT SET');
-console.log('TO:', process.env.EMAIL_TO || 'NOT SET');
-<<<<<<< HEAD
-console.log('===========================\n');
+// -----------------------------------------------------
+// 1. Setup OAuth2 Client
+// -----------------------------------------------------
+const oAuth2Client = new google.auth.OAuth2(
+  process.env.GMAIL_CLIENT_ID,
+  process.env.GMAIL_CLIENT_SECRET,
+  process.env.GMAIL_REDIRECT_URI
+);
 
-// Create transporter with optimized Gmail SMTP settings
-const transporter = nodemailer.createTransport({
-  service: 'gmail', // Use Gmail service directly
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false, // TLS (not SSL)
-=======
-console.log('---------------------------\n');
-
-// Create transporter using environment SMTP settings
-const transporter = nodemailer.createTransport({
-  host: EMAIL_HOST,
-  port: EMAIL_PORT,
-  secure: EMAIL_SECURE,
->>>>>>> 2986b93 (change)
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-  tls: {
-    rejectUnauthorized: false,
-    minVersion: 'TLSv1.2'
-  },
-  connectionTimeout: 10000,
-  socketTimeout: 15000,
-  pool: {
-    maxConnections: 1,
-    maxMessages: 100,
-    rateDelta: 1000,
-    rateLimit: 5
-  },
-  logger: true,
-  debug: true
-});
-// Verify transporter configuration on startup
-transporter.verify((error, success) => {
-  if (error) {
-    console.error('❌ Email transporter verification failed:');
-    console.error('Error:', error.message);
-    console.error('Code:', error.code);
-  } else {
-    console.log('✅ Email server is ready to send messages');
-  }
+oAuth2Client.setCredentials({
+  refresh_token: process.env.GMAIL_REFRESH_TOKEN,
 });
 
-// Send application email with resume attachment
-const sendApplicationEmail = async (applicationData, resumeFile) => {
+// -----------------------------------------------------
+// 2. Send via Gmail HTTP API (bypasses cPanel SMTP proxy)
+// -----------------------------------------------------
+async function sendViaGmailAPI(mailOptions) {
+  // Build raw MIME using nodemailer stream transport (no SMTP connection)
+  const builder = nodemailer.createTransport({ streamTransport: true, newline: "unix", buffer: true });
+  const info = await builder.sendMail(mailOptions);
+  const rawMime = info.message.toString("base64").replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+
+  const gmail = google.gmail({ version: "v1", auth: oAuth2Client });
+  const result = await gmail.users.messages.send({
+    userId: "me",
+    requestBody: { raw: rawMime },
+  });
+  return result.data;
+}
+
+// -----------------------------------------------------
+// 3. Main Job Application Email (sent to HR)
+// -----------------------------------------------------
+async function sendApplicationEmail(applicationData, resumeFile) {
   try {
-    // Validate email configuration
-    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-      throw new Error('Email configuration is missing. Please check EMAIL_USER and EMAIL_PASS in .env file');
-    }
-
-    const recipientEmail = process.env.EMAIL_TO || 'jobs@pacerautomation.com';
-
-    const mailOptions = {
+    const result = await sendViaGmailAPI({
       from: `"Pacer Careers Portal" <${process.env.EMAIL_USER}>`,
-      to: recipientEmail,
+      to: process.env.EMAIL_TO || "pacerautomationcareer@gmail.com",
       replyTo: applicationData.email,
       subject: `New Job Application - ${applicationData.position}`,
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <div style="background: linear-gradient(135deg, #00BFA5 0%, #1E3A8A 100%); padding: 30px; border-radius: 10px 10px 0 0;">
-            <h1 style="color: white; margin: 0; font-size: 28px;">New Job Application</h1>
-          </div>
-          
-          <div style="background-color: #ffffff; padding: 30px; border: 1px solid #e0e0e0; border-top: none;">
-            <h2 style="color: #1E3A8A; margin-top: 0; border-bottom: 2px solid #00BFA5; padding-bottom: 10px;">
-              ${applicationData.position}
-            </h2>
-            
-            <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
-              <h3 style="color: #1E3A8A; margin-top: 0;">Applicant Details</h3>
-              
-              <table style="width: 100%; border-collapse: collapse;">
-                <tr style="border-bottom: 1px solid #e0e0e0;">
-                  <td style="padding: 12px 0; font-weight: bold; color: #555; width: 40%;">
-                    <span style="color: #00BFA5;">●</span> Full Name:
-                  </td>
-                  <td style="padding: 12px 0; color: #333;">${applicationData.name}</td>
-                </tr>
-                <tr style="border-bottom: 1px solid #e0e0e0;">
-                  <td style="padding: 12px 0; font-weight: bold; color: #555;">
-                    <span style="color: #00BFA5;">●</span> Email:
-                  </td>
-                  <td style="padding: 12px 0;">
-                    <a href="mailto:${applicationData.email}" style="color: #00BFA5; text-decoration: none;">
-                      ${applicationData.email}
-                    </a>
-                  </td>
-                </tr>
-                <tr style="border-bottom: 1px solid #e0e0e0;">
-                  <td style="padding: 12px 0; font-weight: bold; color: #555;">
-                    <span style="color: #00BFA5;">●</span> Phone:
-                  </td>
-                  <td style="padding: 12px 0;">
-                    <a href="tel:${applicationData.phone}" style="color: #00BFA5; text-decoration: none;">
-                      ${applicationData.phone}
-                    </a>
-                  </td>
-                </tr>
-                <tr style="border-bottom: 1px solid #e0e0e0;">
-                  <td style="padding: 12px 0; font-weight: bold; color: #555;">
-                    <span style="color: #00BFA5;">●</span> Qualification:
-                  </td>
-                  <td style="padding: 12px 0; color: #333;">${applicationData.qualification}</td>
-                </tr>
-                <tr style="border-bottom: 1px solid #e0e0e0;">
-                  <td style="padding: 12px 0; font-weight: bold; color: #555;">
-                    <span style="color: #00BFA5;">●</span> Experience:
-                  </td>
-                  <td style="padding: 12px 0; color: #333;">${applicationData.experience}</td>
-                </tr>
-              </table>
-            </div>
-            
-            ${applicationData.message ? `
-              <div style="background-color: #e8f5e9; padding: 20px; border-left: 4px solid #00BFA5; border-radius: 4px; margin: 20px 0;">
-                <h4 style="margin-top: 0; color: #1E3A8A;">📝 Additional Message:</h4>
-                <p style="margin-bottom: 0; line-height: 1.6; color: #333;">${applicationData.message}</p>
-              </div>
-            ` : ''}
-            
-            <div style="background-color: #fff3cd; padding: 15px; border-radius: 4px; margin: 20px 0;">
-              <p style="margin: 0; color: #856404;">
-                <strong>📎 Resume Attached:</strong> ${resumeFile ? resumeFile.originalname : 'No file'}
-              </p>
-            </div>
-          </div>
-          
-          <div style="background-color: #f5f5f5; padding: 20px; text-align: center; border-radius: 0 0 10px 10px;">
-            <p style="color: #666; font-size: 12px; margin: 0;">
-              This application was submitted on ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })} IST
-            </p>
-            <p style="color: #666; font-size: 12px; margin: 5px 0 0 0;">
-              Pacer Automation Career Portal | <a href="https://pacerautomation.com" style="color: #00BFA5;">pacerautomation.com</a>
-            </p>
-          </div>
-        </div>
-      `,
-      attachments: resumeFile ? [
-        {
-          filename: resumeFile.originalname,
-          content: resumeFile.buffer,
-          contentType: resumeFile.mimetype
-        },
-      ] : [],
-    };
+      html: generateApplicationHTML(applicationData, resumeFile),
+      attachments: resumeFile
+        ? [{ filename: resumeFile.originalname, content: resumeFile.buffer, contentType: resumeFile.mimetype }]
+        : [],
+    });
 
-    // Send email to HR/Admin
-    const info = await transporter.sendMail(mailOptions);
-    console.log('✅ Application email sent successfully to:', recipientEmail);
-    console.log('Message ID:', info.messageId);
+    console.log("✅ Application email sent to HR");
+    console.log("Message ID:", result.id);
 
-    // Send confirmation email to applicant
-    await sendConfirmationEmail(applicationData);
+    // non-blocking confirmation email
+    sendConfirmationEmail(applicationData).catch((e) =>
+      console.error("⚠ Confirmation email failed:", e.message)
+    );
 
-    return { success: true, messageId: info.messageId };
+    return { success: true, messageId: result.id };
   } catch (error) {
-    console.error('❌ Error sending application email:', error);
+    console.error("❌ Error sending application email:", error.message);
     throw error;
   }
-};
+}
 
-// Send confirmation email to applicant
-const sendConfirmationEmail = async (applicationData) => {
+// -----------------------------------------------------
+// 4. Confirmation Email (sent to applicant)
+// -----------------------------------------------------
+async function sendConfirmationEmail(applicationData) {
   try {
-    const confirmationMailOptions = {
+    await sendViaGmailAPI({
       from: `"Pacer Automation HR Team" <${process.env.EMAIL_USER}>`,
       to: applicationData.email,
-      subject: 'Application Received - Pacer Automation',
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <div style="background: linear-gradient(135deg, #00BFA5 0%, #1E3A8A 100%); padding: 30px; border-radius: 10px 10px 0 0; text-align: center;">
-            <h1 style="color: white; margin: 0; font-size: 28px;">Application Received ✓</h1>
-          </div>
-          
-          <div style="background-color: #ffffff; padding: 30px; border: 1px solid #e0e0e0; border-top: none;">
-            <h2 style="color: #1E3A8A; margin-top: 0;">Dear ${applicationData.name},</h2>
-            
-            <p style="line-height: 1.8; color: #333; font-size: 16px;">
-              Thank you for applying for the <strong style="color: #00BFA5;">${applicationData.position}</strong> position at Pacer Automation!
-            </p>
-            
-            <div style="background-color: #e8f5e9; padding: 20px; border-radius: 8px; margin: 20px 0;">
-              <p style="margin: 0; line-height: 1.6; color: #333;">
-                ✓ We have successfully received your application and resume.<br>
-                ✓ Our HR team will carefully review your profile.<br>
-                ✓ If your qualifications match our requirements, we will contact you within 7-10 business days.
-              </p>
-            </div>
-            
-            <p style="line-height: 1.6; color: #333;">
-              In the meantime, feel free to explore more about us at 
-              <a href="https://pacerautomation.com" style="color: #00BFA5; text-decoration: none;">pacerautomation.com</a>
-            </p>
-            
-            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e0e0e0;">
-              <p style="color: #666; font-size: 14px; margin: 5px 0;">
-                <strong>Best regards,</strong><br>
-                HR Team<br>
-                Pacer Automation
-              </p>
-              <p style="color: #666; font-size: 12px; margin-top: 15px;">
-                📧 <a href="mailto:jobs@pacerautomation.com" style="color: #00BFA5;">jobs@pacerautomation.com</a>
-              </p>
-            </div>
-          </div>
-          
-          <div style="background-color: #f5f5f5; padding: 15px; text-align: center; border-radius: 0 0 10px 10px;">
-            <p style="color: #999; font-size: 11px; margin: 0;">
-              This is an automated confirmation email. Please do not reply to this email.
-            </p>
-          </div>
-        </div>
-      `,
-    };
+      subject: "Application Received - Pacer Automation",
+      html: generateConfirmationHTML(applicationData),
+    });
 
-    await transporter.sendMail(confirmationMailOptions);
-    console.log('✅ Confirmation email sent to applicant:', applicationData.email);
+    console.log("✅ Confirmation email sent to applicant");
   } catch (error) {
-    console.error('⚠️ Error sending confirmation email:', error);
-    // Don't throw error - let the main application submission succeed
+    console.error("⚠ Error sending confirmation email:", error.message);
   }
-};
+}
 
+// -----------------------------------------------------
+// 5. EMAIL HTML TEMPLATES
+// -----------------------------------------------------
+
+function generateApplicationHTML(applicationData, resumeFile) {
+  return `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin:auto; padding:20px;">
+      <div style="background: linear-gradient(135deg,#00BFA5,#1E3A8A); padding:30px; border-radius:10px 10px 0 0;">
+        <h1 style="color:white; margin:0;">New Job Application</h1>
+      </div>
+
+      <div style="background:white; padding:30px; border:1px solid #e0e0e0;">
+        <h2 style="color:#1E3A8A;">${applicationData.position}</h2>
+
+        <div style="padding:20px; background:#f8f9fa; border-radius:8px;">
+          <h3 style="margin-top:0; color:#1E3A8A;">Applicant Details</h3>
+          <table style="width:100%">
+            <tr><td><b>Name:</b></td><td>${applicationData.name}</td></tr>
+            <tr><td><b>Email:</b></td><td>${applicationData.email}</td></tr>
+            <tr><td><b>Phone:</b></td><td>${applicationData.phone}</td></tr>
+            <tr><td><b>Qualification:</b></td><td>${applicationData.qualification}</td></tr>
+            <tr><td><b>Experience:</b></td><td>${applicationData.experience}</td></tr>
+          </table>
+        </div>
+
+        ${
+          applicationData.message
+            ? `
+          <div style="background:#e8f5e9; padding:20px; border-left:4px solid #00BFA5; margin-top:20px;">
+            <h4 style="margin-top:0; color:#1E3A8A;">Message:</h4>
+            <p>${applicationData.message}</p>
+          </div>`
+            : ""
+        }
+
+        <div style="background:#fff3cd; padding:15px; margin-top:20px;">
+          <b>Resume Attached:</b> ${
+            resumeFile ? resumeFile.originalname : "No File"
+          }
+        </div>
+      </div>
+
+      <div style="background:#f5f5f5; padding:15px; text-align:center;">
+        <p style="font-size:12px; color:#777;">
+          Submitted on ${new Date().toLocaleString("en-IN", {
+            timeZone: "Asia/Kolkata",
+          })} IST
+        </p>
+      </div>
+    </div>
+  `;
+}
+
+function generateConfirmationHTML(applicationData) {
+  return `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin:auto; padding:20px;">
+      <div style="background: linear-gradient(135deg,#00BFA5,#1E3A8A); padding:30px; border-radius:10px 10px 0 0; text-align:center;">
+        <h1 style="color:white;">Application Received ✓</h1>
+      </div>
+
+      <div style="background:white; padding:30px; border:1px solid #e0e0e0;">
+        <h2 style="color:#1E3A8A;">Dear ${applicationData.name},</h2>
+        <p>Thank you for applying for the <b>${applicationData.position}</b> role at Pacer Automation!</p>
+
+        <div style="background:#e8f5e9; padding:20px; border-radius:8px;">
+          <p>
+            • We have received your application<br>
+            • Our HR team will review your profile<br>
+            • If shortlisted, we will contact you within 7–10 business days
+          </p>
+        </div>
+
+        <p>Visit our website:  
+        <a href="https://pacerautomation.com" style="color:#00BFA5;">pacerautomation.com</a>
+        </p>
+
+        <p style="margin-top:30px; font-size:14px; color:#666;">
+          Best Regards,<br>
+          HR Team — Pacer Automation
+        </p>
+      </div>
+
+      <div style="background:#f5f5f5; padding:15px; text-align:center;">
+        <p style="font-size:11px; color:#999;">This is an automated email, please do not reply.</p>
+      </div>
+    </div>
+  `;
+}
+
+// -----------------------------------------------------
+// 6. Export
+// -----------------------------------------------------
 module.exports = {
   sendApplicationEmail,
 };
